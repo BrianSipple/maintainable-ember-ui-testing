@@ -25,3 +25,7 @@
   background-color: unset;
   border-radius: 0;
 }
+
+.c-code--fill-height {
+  max-height: 100vh !important;
+}

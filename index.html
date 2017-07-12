@@ -37,37 +37,17 @@
         </section>
 
         <section>
-          <p>
+          <p class="u-mb-lg">
             Adapted from my May 2017 article on <a href="https://emberway.io/maintainable-user-interface-testing-with-ember-40f1b58040b6" target="_blank">The Ember Way</a>.
           </p>
 
           <p>
-            Slides are available on <a href="https://github.com/BrianSipple/maintainable-ember-ui-testing" target="_blank">GitHub</a>
+            Slides are available at <a href="https://github.com/BrianSipple/maintainable-ember-ui-testing" target="_blank">https://github.com/BrianSipple/maintainable-ember-ui-testing</a>
           </p>
         </section>
 
         <section>
           
-        <!-- <h2>Basic Terminology</h2>
-          <img class="g-bg-unset g-border-none g-box-shadow-none" src="assets/images/ember-logo.png" alt="">
-        </section>
-
-        <section>
-          <h4>Unit Testing</h4>
-
-          <pre>
-            <code class="hljs js" data-trim>
-
-            </code>
-          </pre>
-
-          <p class="u-absolute u-edge-left u-mt-lg u-ml-md">
-            🐹 
-            <a href="https://guides.emberjs.com/v2.14.0/testing/unit-testing-basics/" target="_blank">
-              Ember Unit Testing Basics
-            </a>
-          </p> -->
-
           <section>
             <h2 class="u-mb-md">🐹 Basic Terminology</h2>
           </section>
@@ -76,12 +56,12 @@
             <h3>Unit Testing</h3>
 
             <ul>
-              <li>Focused</li>
-              <li>Fast</li>
-              <li>Functional</li>
+              <li class="fragment">Focused</li>
+              <li class="fragment">Fast</li>
+              <li class="fragment">Isolated</li>
             </ul>
             
-            <p class="u-absolute u-edge-left u-mt-lg u-ml-md">
+            <p class="u-absolute u-edge-left u-mt-xl u-ml-md">
               🐹 Guides: 
               <a href="https://guides.emberjs.com/v2.14.0/testing/unit-testing-basics/" target="_blank">
                 Ember Unit Testing Basics
@@ -93,11 +73,12 @@
             <h3>Integration Testing</h3>
 
             <ul>
-              <li>How a component gets rendered in the DOM</li>
-              <li><strong>Not</strong> how a component gets rendered in your app</li>
+              <li class="fragment u-mb-md">How a component gets rendered in the DOM</li>
+              <li class="fragment u-mb-md"><strong>Not</strong> how a component gets rendered in your app</li>              
+              <li class="fragment">May use other components</li>
             </ul>
 
-            <p class="u-absolute u-edge-left u-mt-lg u-ml-md">
+            <p class="u-absolute u-edge-left u-mt-xl u-ml-md">
               🐹 Guides: 
               <a href="https://guides.emberjs.com/v2.14.0/testing/testing-components/" target="_blank">
                 Testing Components
@@ -109,12 +90,12 @@
             <h3>Acceptance Testing</h3>
 
             <ul>
-              <li>Running the full app</li>
-              <li>Rendering entire pages</li>
-              <li>Telling a story</li>
+              <li class="fragment">Running the full app</li>
+              <li class="fragment">Rendering entire pages</li>
+              <li class="fragment">Telling a story</li>
             </ul>
 
-            <p class="u-absolute u-edge-left u-mt-lg u-ml-md">
+            <p class="u-absolute u-edge-left u-mt-xl u-ml-md">
               🐹 Guides: 
               <a href="https://guides.emberjs.com/v2.14.0/testing/testing-components/" target="_blank">
                 Acceptance Testing
@@ -202,34 +183,19 @@
           </section>
           
           <section>
-            <h3 class="u-mb-lg">Ember Test Selectors</h3>
-
-            <h5>Out of the Box:</h5>
-            <ul>
-              <li>
-                Integration with Components
-              </li>
-              <li>
-                Automatic 
-              </li>
-              <li>
-                <code class="g-primary">testSelector</code> helper
-              </li>
-            </ul>
+            <h2>
+              <a href="https://github.com/simplabs/ember-test-selectors" target="_blank">
+                Ember Test Selectors
+              </a>
+            </h2> 
           </section>
 
           <section>
             <pre>
-              <code class="hljs handlebars" data-trim data-noescape>
-                <nav>
-                  <ul>
-                    <li>
-                      {{#link-to 'login' class="c-navbar__nav-item copy-link" data-test-sign-in-link}}
-                        Sign In
-                      {{/link-to}}
-                    </li>
-                  </ul>
-                </nav>
+              <code class="hljs handlebars" data-trim>
+                {{#link-to 'login' data-test-sign-in-link}}
+                  Sign In
+                {{/link-to}}
               </code>
             </pre>
 
@@ -244,14 +210,34 @@
             </pre>
           </section>
 
+          <section>
+            <!-- 
+              You could always use data attributes without Ember Test Selector, but there's
+              a lot that it gives us out of the box
+             -->
+            <h4>Out of the Box:</h4>
+            <ul>
+              <li>
+                Integration with Components
+              </li>
+              <li>
+                Automatic attribute stripping in production
+              </li>
+              <li>
+                <code class="g-primary">testSelector</code> helper
+              </li>
+            </ul>
+          </section>
+
         </section>
 
-        <!-- 
-          Somethings, however, finding a button and clicking on it is just the beginning 
-        -->
+        <section>
+          <p>
+            Usually, though, this is just the beginning
+          </p>
+        </section>
 
         <section>
-
           <section>
             <h2>Handling Async Behavior</h2>
 
@@ -261,47 +247,86 @@
           <section>
             <h3>The Old <span class="highlight-orange">Ember</span> Way</h3>
 
-            <pre>
-              <code class="hljs javascript" data-trim>
-                click(testSelector('sign-in-link'));
+            <div class="fragment">
+              <pre>
+                <code class="hljs javascript" data-trim>
+                  click(testSelector('sign-in-link'));
 
-                andThen() {
-                  // assert things
-                }
-              </code>
-            </pre>
+                  andThen() {
+                    assert.equal(currentURL(), 'login');
+                  }
+                </code>
+              </pre>
 
-            <h5>Async Test Helpers</h5>            
+              <small class="g-primary">Async Test Helpers</small>            
+            </div>
           </section>
 
-          <section>
-            <h3>The New <span class="highlight-blue">Web Platform</span> Way</h3>
+          <section data-transition="slide-in none">
+            <h3>
+              The New Ember Way
+            </h3>
+          </section>
 
-            <pre>
+          <section data-transition="none slide-out">
+            <h3>
+              The New <span class="g-primary">Web Platform</span> Way
+            </h3>
+
+            <h5 class="fragment">
+              <span class="g-accent">Async/Await</span> 
+              + 
+              <span class="g-accent">Ember Native DOM Helpers</span>
+            </h5>
+            
+            <pre class="fragment">
               <code class="hljs javascript" data-trim>
-                import click from 'ember-native-dom-helpers';
+                import { click } from 'ember-native-dom-helpers';
+
+                ...
 
                 await click(testSelector('sign-in-link'));
 
-                assert.equal();
+                assert.equal(currentURL(), 'login');
               </code>
             </pre>
-
-            <h5>Async/Await + Ember Native DOM Helpers</h5>
-            
           </section>
-
         </section>
 
         <section>
+          <h2><span class="g-primary">DRY</span>ing up Assertions</h2>
           
+          <pre class="fragment">
+            <code class="hljs javascript" data-trim>
+              import Ember from 'ember';
+              import { findAll } from 'ember-native-dom-helpers';
+
+              export default Ember.Test.registerHelper('shouldHaveElementCount',
+                function(app, assert, selector, expectedCount, context) {
+                  const elems = findAll(selector, context);
+                  const count = elems.length;
+                  
+                  assert.equal(count, expectedCount, `found ${count} elements with selector '${selector}'`);
+                }
+              );
+            </code>
+          </pre>
+        </section>        
+
+        <section>
+          <p>
+            For integration testing alone, this setup is 💯
+          </p>
+        </section>
+
+        <section>
           <section>
             <h2>Taming State</h2>
           </section>
 
           <section>
             <h2>
-              <a href="http://www.ember-cli-mirage.com/">Ember CLI Mirage</a>
+              <a href="http://www.ember-cli-mirage.com/" target="_blank">Ember CLI Mirage</a>
             </h2>
 
             <!-- Mocking things out -->
@@ -310,14 +335,13 @@
               <li class="fragment">Fixtures</li>
               <li class="fragment">Route Handlers</li>
               <li class="fragment">Models</li>
+              <li class="fragment">In-Memory Database</li>
             </ul>
           </section>
 
           <!-- Keeping state clean -->
           <section>
-            <h3 class="fragment">In-Memory Database</h3>
-
-            <h4>Every test is a clean slate</h4>
+            <h3 class="fragment">Every test is a clean slate</h3>
           </section>
 
           <!-- 
@@ -326,7 +350,7 @@
           -->
           <section>
             <pre>
-              <code class="hljs js" data-trim>
+              <code class="hljs javascript c-code c-code--fill-height" data-trim>
                 import { test } from 'qunit';
                 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
                 import { visit, click, find, fillIn } from 'ember-native-dom-helpers';
@@ -348,7 +372,6 @@
               </code>
             </pre>
           </section>
-
           <!-- 
             If we write other tests that make other assertions involving `playlist` or `song` 
             records, they don't have to worry at all about what we did here
@@ -356,10 +379,10 @@
         </section>
 
         <section>
-          <h2>DRYing up Assertions</h2>
+          <p>Can we abstract these concepts even further?</p>
         </section>
 
-        <section data-image-background="assets/images/we-love-apis.png">
+        <section data-background-image="assets/images/i-love-apis.png" data-background-size="50%">
           <!--
             It would be nice if we had a way to organize a lot of these concepts
             To... say... encapsulate them into some sort of programming interface
@@ -369,15 +392,80 @@
         <section>
 
           <section>
-            <h2>Page Objects (APIs for Acceptance Tests</h2>
+            <h2>Page Objects</h2>
           </section>
 
           <section>
-            [Martin Fowler Quote]
+            <blockquote cite="https://martinfowler.com/bliki/PageObject.html">
+              A page object wraps an HTML page, or fragment, with an application-specific API, 
+              allowing you to manipulate page elements without digging around in the HTML.
+            </blockquote>
+            <p class="u-text-right">
+              ~ 
+              <a href="https://martinfowler.com/bliki/PageObject.html" target="_blank"> 
+                Martin Fowler
+              </a>
+            </p>
           </section>
 
           <section>
-           <h2>Ember CLI Page Object</h2>
+            <p class="g-primary">
+              APIs for Acceptance Tests
+            </p>
+          </section>
+
+          <section>
+            <h2>
+              <a href="https://github.com/san650/ember-cli-page-object" target="_blank">Ember CLI Page Object</a>
+            </h2>
+          </section>
+
+          <section>
+            <pre>
+              <code class="hljs javascript c-code c-code--fill-height" data-trim>
+                import testSelector from 'ember-test-selectors';
+
+                import PageObject, {
+                  clickable,
+                  fillable,
+                  text,
+                  visitable
+                } from 'frontend/tests/page-object';
+
+                export default PageObject.create({
+                  visit: visitable('/registration'),
+
+                  username: fillable(testSelector('registration-user-name')),
+                  password: fillable(testSelector('registration-password')),
+                  passwordConfirmation: fillable(testSelector('registration-password-confirmation')),       
+                  submit: clickable(testSelector('registration-submit-button')),
+                  passwordError: text(testSelector('form-field-error-message', 'password-confirmation'))
+                });
+              </code>
+            </pre>
+          </section>
+
+          <section>
+            <pre>
+              <code class="hljs javascript c-code c-code--fill-height" data-trim>
+                import { test } from 'qunit';
+                import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
+                import registrationPage from '../../tests/pages/registration';
+
+                moduleForAcceptance('Acceptance | register user');
+
+                test('Displaying an error message when passwords do not match', async function(assert) {
+                  await registrationPage
+                    .visit()
+                    .username('Tomster')
+                    .password('12345678')
+                    .passwordConfirmation('password123')
+                    .submit();
+
+                  assert.ok(registrationPage.passwordError, 'Passwords confirmation error message exists');
+                });
+              </code>
+            </pre>
           </section>
 
         </section>
@@ -386,20 +474,39 @@
           <h3>Going Even Further</h3>
 
           <ul>
-            <li>
-              <a href="" target="_blank"></a>
+            <li class="fragment">
+              Running tests with past, present and future versions of Ember.
+              <!-- Really comes in handy for adddons... but also for appps  -->
+              <span>
+                (<a href="https://github.com/ember-cli/ember-try" target="_blank">Ember Try</a>)
+              </span>
             </li>
-            <li>
-              <a href="" target="_blank"></a>
+            <li class="fragment">
+              Cross-browser, platform, and device testing with Sauce Labs
+              <span>
+                (<a href="https://github.com/johanneswuerbach/ember-cli-sauce" target="_blank">Ember CLI Sauce</a>)
+              </span>
             </li>
-            <li>
-              <a href="" target="_blank"></a>
-            </li>
-            <li>
-              <a href="" target="_blank"></a>
+            <li class="fragment">
+              Visual Regression Testing with Percy 
+              <span>
+                (<a href="https://github.com/percy/ember-percy" target="_blank">Ember Percy</a>)
+              </span>
             </li>
           </ul>
         </section>
+
+        <section>
+          <h2 class="u-mb-lx">Thanks!</h2>
+
+          <p class="u-text-left">
+            Twitter: <a href="https://twitter.com/Brian_Sipple" target="_blank">@Brian_Sipple</a>
+          </p>
+          <p class="u-text-left">
+            GitHub: <a href="https://github.com/BrianSipple" target="_blank">BrianSipple</a>
+          </p>
+        </section>
+
       </div>
     </div>
 

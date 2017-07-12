@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Maintainable UI Testing with Ember.js</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="vendor/reveal/css/reveal.css" rel="stylesheet">
+    <link href="vendor/reveal/css/theme/blood.css" rel="stylesheet">
+    
+    <link href="https://unpkg.com/@savvy-css/savvy@0.0.4" rel="stylesheet">
+    
+    
+    <!-- For syntax highlighting -->
+    <link href="vendor/reveal/lib/css/zenburn.css" rel="stylesheet">
+
+    <link href="styles/app.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        
+        <section>
+          <h2>Maintainable</h2>
+          <h1>UI Testing</h1> 
+          <h2>with Ember</h2>
+
+          <small class="u-text-right">
+            Created by
+            <a href="https://www.twitter.com/@Brian_Sipple" target="_blank" class="o-grid">
+              @Brian_Sipple
+            </a>
+            <!--<a href="https://www.twitter.com/@Brian_Sipple" target="_blank" class="o-grid">
+              <svg>
+                
+              </svg>
+              <span>@Brian_Sipple</span>
+            </a>-->
+          </small>
+        </section>
+
+        <section>
+          <h2>Basic Terminology</h2>
+
+          <section>
+            <p class="fragment">Unit Testing</p>
+            
+            <div class="u-relative">
+              <div>
+                <p class="fragment">Integration Testing</p>
+
+                <p class="fragment">Acceptance Testing</p>
+              </div>
+
+              <!-- Box around Integration Testing + Acceptance Testing) UI Testing -->
+
+              <div class="u-absolute u-edge-top u-edge-left fragment current-visible">
+                <span>UI Testing</span>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <h3>What does <i>maintainable</i> even mean?</h3>
+        </section>
+
+        <section>
+          <p class="g-primary">
+            Testing the right things — and continuing to test the right things.
+          </p>
+        </section>
+
+        <section>
+            <!-- Challenge 1 -->
+            <section>
+              <h2>Querying the DOM</h2>
+            </section>
+              
+            <section>
+              <h3>Method 1: Matching the Markup</h3>
+              
+              <pre class="fragement"><code class="hljs css">
+              .form-card > .action-buttons > .button--primary
+              </code></pre>
+
+            </section>
+
+            <!-- 
+              The more you keep changing your app and then more your tests keep failing simply because
+              you decided to change a CSS class to apply a different style to something... the more 
+              this kind of querying starts to feel like walking in to a maze...
+            -->
+
+            <section data-background-image="assets/images/maze.jpg"></section>
+
+            <!-- And, quite frankly... -->
+
+            <section data-background-image="assets/images/not-meant-for-you.jpg">
+              <!-- The maze just isn't meant for you -->
+            </section>
+
+            
+            <section data-background-image="assets/images/magnet-2.png">
+              <!-- 
+                What we really need is a giant magnet... where we can just stand outside of 
+                the maze and pluck out what we need without worrying about how the insidse is structured
+              -->
+            </section>
+
+            <section>
+              <h2 class="fragment">Decoupling Data from Presentation</h2>
+              
+              <h4>Use HTML <code>data</code> attributes</h4>
+              <pre class="fragment">
+                <code class="hljs html">
+                  data-test-*
+                </code>
+              </pre>
+            </section>
+            
+            <section>
+              <h3>Ember Test Selectors</h3>
+
+              <h5>Out of the Box:</h5>
+              <ul>
+                <li>
+                  Integration with Components
+                </li>
+                <li>
+                  Automatic 
+                </li>
+                <li>
+                  <code>testSelector</code> helper
+                </li>
+              </ul>
+            </section>
+
+            <section>
+              <pre><code class="hljs hbs">
+                <nav>
+                  <ul>
+                    <li>
+                      {{#link-to 'login' class="c-navbar__nav-item copy-link" data-test-sign-in-link}}
+                        Sign In
+                      {{/link-to}}
+                    </li>
+                  </ul>
+                </nav>
+              </code></pre>
+
+              <pre><code class="hljs js">
+                import testSelector from 'ember-test-selectors';
+
+                ...
+
+                click(testSelector('sign-in-link'));
+              </code></pre>
+            </section>
+
+        </section>
+
+        <!-- 
+          Somethings, however, finding a button and clicking on it is just the beginning 
+        -->
+
+        <section>
+          <section data-background-image="assets/svg/async-flow.svg">
+            <h2>Handling Async Behavior</h2>
+          </section>
+          
+          <section>
+            <h3>The Old <span class="highlight-orange">Ember</span> Way</h3>
+
+            <pre><code class="hljs javascript">
+              click(testSelector('sign-in-link'));
+
+              andThen() {
+                // assert things
+              }
+            </code></pre>
+
+            <h5>Async Test Helpers</h5>            
+          </section>
+
+          <section>
+            <h3>The New <span class="highlight-blue">Web Platform</span> Way</h3>
+
+            <pre><code class="hljs javascript">
+              import click from 'ember-native-dom-helpers';
+
+              await click(testSelector('sign-in-link'));
+
+              assert.equal();
+            </code></pre>
+
+            <h5>Async/Await + Ember Native DOM Helpers</h5>
+            
+          </section>
+
+        </section>
+
+        <section>
+          
+          <section>
+            <h2>Taming State</h2>
+          </section>
+
+          <section>
+            <h2>
+              <a href="http://www.ember-cli-mirage.com/">Ember CLI Mirage</a>
+            </h2>
+
+            <!-- Mocking things out -->
+            <ul>
+              <li class="fragment">Factories</li>
+              <li class="fragment">Fixtures</li>
+              <li class="fragment">Route Handlers</li>
+              <li class="fragment">Models</li>
+            </ul>
+          </section>
+
+          <!-- Keeping state clean -->
+          <section>
+            <h3 class="fragment">In-Memory Database</h3>
+
+            <h4>Every test is a clean slate</h4>
+          </section>
+
+          <!-- 
+            Let's say we have a `playlist` page, and we want to test that contains a 
+            list of `songs` 
+          -->
+          <section>
+            <pre>
+              <code class="hljs js">
+                import { test } from 'qunit';
+                import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
+                import { visit, click, find, fillIn } from 'ember-native-dom-helpers';
+                import testSelector from 'ember-test-selectors';
+
+                const STARTING_SONG_COUNT = 10;
+
+                moduleForAcceptance('Acceptance | playlist details page');
+
+                test(`rendering a playlist's songs`, async function(assert) {
+                  const playlist = server.create('playlist');
+                  
+                  server.createList('song', STARTING_SONG_COUNT, { playlist });     
+
+                  await visit('/playlists/1');
+                  
+                  assert.equal(findAll(testSelector('song')).length, STARTING_SONG_COUNT, `${STARTING_SONG_COUNT} are rendered on load`);
+                });
+              </code>
+            </pre>
+          </section>
+
+          <!-- 
+            If we write other tests that make other assertions involving `playlist` or `song` 
+            records, they don't have to worry at all about what we did here
+          -->
+        </section>
+
+        <section>
+          <h2>DRYing up Assertions</h2>
+        </section>
+
+        <section data-image-background="assets/images/we-love-apis.png">
+          <!--
+            It would be nice if we had a way to organize a lot of these concepts
+            To... say... encapsulate them into some sort of programming interface
+          -->
+        </section>
+
+        <section>
+
+          <section>
+            <h2>Page Objects (APIs for Acceptance Tests</h2>
+          </section>
+
+          <section>
+            [Martin Fowler Quote]
+          </section>
+
+          <section>
+           <h2>Ember CLI Page Object</h2>
+          </section>
+
+        </section>
+
+        <section>
+          <h3>Going Even Further</h3>
+
+          <ul>
+            <li>
+              <a href="" target="_blank"></a>
+            </li>
+            <li>
+              <a href="" target="_blank"></a>
+            </li>
+            <li>
+              <a href="" target="_blank"></a>
+            </li>
+            <li>
+              <a href="" target="_blank"></a>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <script src="vendor/reveal/lib/js/head.min.js"></script>
+    <script src="vendor/reveal/js/reveal.js"></script>
+
+    <script>
+      Reveal.initialize({
+        dependencies: [
+          { src: 'vendor/reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }  
+        ]
+      });
+    </script>
+  </body>
+
+</html>

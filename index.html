@@ -22,123 +22,205 @@
       <div class="slides">
         
         <section>
-          <h2>Maintainable</h2>
-          <h1>UI Testing</h1> 
-          <h2>with Ember</h2>
+          <h3>Maintainable</h3>
+          <h2>UI Testing</h2> 
+          <h3>with Ember</h3>
 
-          <small class="u-text-right">
-            Created by
-            <a href="https://www.twitter.com/@Brian_Sipple" target="_blank" class="o-grid">
-              @Brian_Sipple
-            </a>
-            <!--<a href="https://www.twitter.com/@Brian_Sipple" target="_blank" class="o-grid">
-              <svg>
-                
-              </svg>
-              <span>@Brian_Sipple</span>
-            </a>-->
-          </small>
-        </section>
-
-        <section>
-          <h2>Basic Terminology</h2>
-
-          <section>
-            <p class="fragment">Unit Testing</p>
-            
-            <div class="u-relative">
-              <div>
-                <p class="fragment">Integration Testing</p>
-
-                <p class="fragment">Acceptance Testing</p>
-              </div>
-
-              <!-- Box around Integration Testing + Acceptance Testing) UI Testing -->
-
-              <div class="u-absolute u-edge-top u-edge-left fragment current-visible">
-                <span>UI Testing</span>
-              </div>
-            </div>
-          </section>
-        </section>
-
-        <section>
-          <h3>What does <i>maintainable</i> even mean?</h3>
-        </section>
-
-        <section>
-          <p class="g-primary">
-            Testing the right things — and continuing to test the right things.
+          <p class="u-text-right">
+            <small class="u-text-right">
+              Created by
+              <a href="https://www.twitter.com/@Brian_Sipple" target="_blank" class="o-grid">
+                @Brian_Sipple
+              </a>
+            </small>
           </p>
         </section>
 
         <section>
-            <!-- Challenge 1 -->
-            <section>
-              <h2>Querying the DOM</h2>
-            </section>
-              
-            <section>
-              <h3>Method 1: Matching the Markup</h3>
-              
-              <pre class="fragement"><code class="hljs css">
-              .form-card > .action-buttons > .button--primary
-              </code></pre>
+          <p>
+            Adapted from my May 2017 article on <a href="https://emberway.io/maintainable-user-interface-testing-with-ember-40f1b58040b6" target="_blank">The Ember Way</a>.
+          </p>
 
-            </section>
+          <p>
+            Slides are available on <a href="https://github.com/BrianSipple/maintainable-ember-ui-testing" target="_blank">GitHub</a>
+          </p>
+        </section>
 
+        <section>
+          
+        <!-- <h2>Basic Terminology</h2>
+          <img class="g-bg-unset g-border-none g-box-shadow-none" src="assets/images/ember-logo.png" alt="">
+        </section>
+
+        <section>
+          <h4>Unit Testing</h4>
+
+          <pre>
+            <code class="hljs js" data-trim>
+
+            </code>
+          </pre>
+
+          <p class="u-absolute u-edge-left u-mt-lg u-ml-md">
+            🐹 
+            <a href="https://guides.emberjs.com/v2.14.0/testing/unit-testing-basics/" target="_blank">
+              Ember Unit Testing Basics
+            </a>
+          </p> -->
+
+          <section>
+            <h2 class="u-mb-md">🐹 Basic Terminology</h2>
+          </section>
+
+          <section>
+            <h3>Unit Testing</h3>
+
+            <ul>
+              <li>Focused</li>
+              <li>Fast</li>
+              <li>Functional</li>
+            </ul>
+            
+            <p class="u-absolute u-edge-left u-mt-lg u-ml-md">
+              🐹 Guides: 
+              <a href="https://guides.emberjs.com/v2.14.0/testing/unit-testing-basics/" target="_blank">
+                Ember Unit Testing Basics
+              </a>
+            </p>
+          </section>
+
+          <section>
+            <h3>Integration Testing</h3>
+
+            <ul>
+              <li>How a component gets rendered in the DOM</li>
+              <li><strong>Not</strong> how a component gets rendered in your app</li>
+            </ul>
+
+            <p class="u-absolute u-edge-left u-mt-lg u-ml-md">
+              🐹 Guides: 
+              <a href="https://guides.emberjs.com/v2.14.0/testing/testing-components/" target="_blank">
+                Testing Components
+              </a>
+            </p>
+          </section>
+
+          <section>
+            <h3>Acceptance Testing</h3>
+
+            <ul>
+              <li>Running the full app</li>
+              <li>Rendering entire pages</li>
+              <li>Telling a story</li>
+            </ul>
+
+            <p class="u-absolute u-edge-left u-mt-lg u-ml-md">
+              🐹 Guides: 
+              <a href="https://guides.emberjs.com/v2.14.0/testing/testing-components/" target="_blank">
+                Acceptance Testing
+              </a>
+            </p>
+          </section>
+
+          <section>
+            <p class="u-mb-lg">Unit Testing</p>
+
+            <div class="u-relative">
+              <div>
+                <p class="u-mb-lg">Integration Testing</p>
+
+                <p>Acceptance Testing</p>
+              </div>
+
+              <div class="c-border-box fragment current-visible g-primary">
+                <p class="c-border-box__top-title">UI Testing</p>
+              </div>
+            </div>
+          
+          </section>
+
+        </section>
+
+        <section>
+          <section>
+            <h3>What does <i>maintainable</i> even mean?</h3>
+          </section>
+
+          <section>
+            <p class="g-primary">
+              Testing the right things &mdash; and continuing to test the right things.
+            </p>
+          </section>
+        </section>
+
+        <section>
+          <!-- Challenge 1 -->
+          <section>
+            <h2>Querying the DOM</h2>
+          </section>
+            
+          <section>
+            <h3>Method 1: Matching the Markup</h3>
+            
+            <pre class="fragement">
+              <code class="hljs css" data-trim>
+                .form-card > .action-buttons > .button--primary
+              </code>
+            </pre>
+
+          </section>
+
+          <!-- 
+            The more you keep changing your app and then more your tests keep failing simply because
+            you decided to change a CSS class to apply a different style to something... the more 
+            this kind of querying starts to feel like walking in to a maze...
+          -->
+
+          <section data-background-image="assets/images/maze.jpg" data-background-size="75%"></section>
+
+          <!-- And, quite frankly... -->
+
+          <section data-background-image="assets/images/not-meant-for-you.jpg" data-background-size="75%">
+            <!-- The maze just isn't meant for you -->
+          </section>
+
+          
+          <section data-background-image="assets/images/magnet-2.png" data-background-size="50%">
             <!-- 
-              The more you keep changing your app and then more your tests keep failing simply because
-              you decided to change a CSS class to apply a different style to something... the more 
-              this kind of querying starts to feel like walking in to a maze...
+              What we really need is a giant magnet... where we can just stand outside of 
+              the maze and pluck out what we need without worrying about how the insidse is structured
             -->
+          </section>
 
-            <section data-background-image="assets/images/maze.jpg"></section>
+          <section>
+            <h2>Decoupling Data from Presentation</h2>
+          </section>
 
-            <!-- And, quite frankly... -->
+          <section>
+            <h3 class="u-mb-xl">Use HTML <span class="g-primary">data</span> attributes</h3>
+            <code class="fragment g-primary">data-test-*</code>
+          </section>
+          
+          <section>
+            <h3 class="u-mb-lg">Ember Test Selectors</h3>
 
-            <section data-background-image="assets/images/not-meant-for-you.jpg">
-              <!-- The maze just isn't meant for you -->
-            </section>
+            <h5>Out of the Box:</h5>
+            <ul>
+              <li>
+                Integration with Components
+              </li>
+              <li>
+                Automatic 
+              </li>
+              <li>
+                <code class="g-primary">testSelector</code> helper
+              </li>
+            </ul>
+          </section>
 
-            
-            <section data-background-image="assets/images/magnet-2.png">
-              <!-- 
-                What we really need is a giant magnet... where we can just stand outside of 
-                the maze and pluck out what we need without worrying about how the insidse is structured
-              -->
-            </section>
-
-            <section>
-              <h2 class="fragment">Decoupling Data from Presentation</h2>
-              
-              <h4>Use HTML <code>data</code> attributes</h4>
-              <pre class="fragment">
-                <code class="hljs html">
-                  data-test-*
-                </code>
-              </pre>
-            </section>
-            
-            <section>
-              <h3>Ember Test Selectors</h3>
-
-              <h5>Out of the Box:</h5>
-              <ul>
-                <li>
-                  Integration with Components
-                </li>
-                <li>
-                  Automatic 
-                </li>
-                <li>
-                  <code>testSelector</code> helper
-                </li>
-              </ul>
-            </section>
-
-            <section>
-              <pre><code class="hljs hbs">
+          <section>
+            <pre>
+              <code class="hljs handlebars" data-trim data-noescape>
                 <nav>
                   <ul>
                     <li>
@@ -148,16 +230,19 @@
                     </li>
                   </ul>
                 </nav>
-              </code></pre>
+              </code>
+            </pre>
 
-              <pre><code class="hljs js">
+            <pre>
+              <code class="hljs javascript" data-trim>
                 import testSelector from 'ember-test-selectors';
 
                 ...
 
                 click(testSelector('sign-in-link'));
-              </code></pre>
-            </section>
+              </code>
+            </pre>
+          </section>
 
         </section>
 
@@ -166,20 +251,25 @@
         -->
 
         <section>
-          <section data-background-image="assets/svg/async-flow.svg">
+
+          <section>
             <h2>Handling Async Behavior</h2>
-          </section>
+
+            <img src="assets/svg/async-flow.svg" alt="" class="g-border-none g-bg-unset">
+          </section> 
           
           <section>
             <h3>The Old <span class="highlight-orange">Ember</span> Way</h3>
 
-            <pre><code class="hljs javascript">
-              click(testSelector('sign-in-link'));
+            <pre>
+              <code class="hljs javascript" data-trim>
+                click(testSelector('sign-in-link'));
 
-              andThen() {
-                // assert things
-              }
-            </code></pre>
+                andThen() {
+                  // assert things
+                }
+              </code>
+            </pre>
 
             <h5>Async Test Helpers</h5>            
           </section>
@@ -187,13 +277,15 @@
           <section>
             <h3>The New <span class="highlight-blue">Web Platform</span> Way</h3>
 
-            <pre><code class="hljs javascript">
-              import click from 'ember-native-dom-helpers';
+            <pre>
+              <code class="hljs javascript" data-trim>
+                import click from 'ember-native-dom-helpers';
 
-              await click(testSelector('sign-in-link'));
+                await click(testSelector('sign-in-link'));
 
-              assert.equal();
-            </code></pre>
+                assert.equal();
+              </code>
+            </pre>
 
             <h5>Async/Await + Ember Native DOM Helpers</h5>
             
@@ -234,7 +326,7 @@
           -->
           <section>
             <pre>
-              <code class="hljs js">
+              <code class="hljs js" data-trim>
                 import { test } from 'qunit';
                 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
                 import { visit, click, find, fillIn } from 'ember-native-dom-helpers';

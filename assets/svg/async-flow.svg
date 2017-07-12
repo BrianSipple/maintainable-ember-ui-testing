@@ -2,14 +2,16 @@
   <title>async-flow</title>
   <g id="Layer_2" data-name="Layer 2">
     <g id="Layer_1-2" data-name="Layer 1">
-      <polyline points="0 217.3 139.92 217.3 898 217.3" fill="#fff" stroke="#000" stroke-miterlimit="10" stroke-width="5"/>
+      
+      <polyline points="0 217.3 139.92 217.3 898 217.3" fill="#23c3f2" stroke="#23c3f2" stroke-miterlimit="10" stroke-width="5"/>
+      
       <g>
-        <polyline points="140 217.3 273 84.3 636 84.3 731.97 194.71" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="5"/>
-        <path d="M751.76,217.48c-13.29-7.26-31.63-14.66-46-16.66l23.59-9.11,12.3-22.09C741.65,184.12,746.42,203.32,751.76,217.48Z"/>
+        <polyline points="140 217.3 273 84.3 636 84.3 731.97 194.71" fill="none" stroke="#23c3f2" stroke-miterlimit="10" stroke-width="5"/>
+        <path d="M751.76,217.48c-13.29-7.26-31.63-14.66-46-16.66l23.59-9.11,12.3-22.09C741.65,184.12,746.42,203.32,751.76,217.48Z" fill="#23c3f2" />
       </g>
       <g>
-        <polyline points="277 217.3 470.47 23.77 965.82 23.77" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="5"/>
-        <path d="M996,23.77C981.8,29,964.18,38,953.26,47.55l8.6-23.78L953.26,0C964.18,9.52,981.8,18.51,996,23.77Z"/>
+        <polyline points="277 217.3 470.47 23.77 965.82 23.77" fill="none" stroke="#23c3f2" stroke-miterlimit="10" stroke-width="5"/>
+        <path d="M996,23.77C981.8,29,964.18,38,953.26,47.55l8.6-23.78L953.26,0C964.18,9.52,981.8,18.51,996,23.77Z" fill="#23c3f2"/>
       </g>
     </g>
   </g>
